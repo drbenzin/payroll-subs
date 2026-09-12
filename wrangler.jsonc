@@ -11,7 +11,8 @@
   },
   "assets": {
     "directory": "landing",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "run_worker_first": true
   },
   "vars": { "SITE": "payrollforsubs" },
   "d1_databases": [
