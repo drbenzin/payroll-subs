@@ -1,8 +1,9 @@
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
-    if (url.hostname.startsWith("www.")) {
-      url.hostname = url.hostname.slice(4);
+    // FormSubmit activated for www — keep every visitor on that origin.
+    if (url.hostname === "payrollforsubs.com") {
+      url.hostname = "www.payrollforsubs.com";
       return Response.redirect(url.toString(), 301);
     }
     if (url.pathname === "/e" && req.method === "POST") {
