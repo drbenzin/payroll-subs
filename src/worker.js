@@ -1,6 +1,10 @@
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
+    if (url.hostname.startsWith("www.")) {
+      url.hostname = url.hostname.slice(4);
+      return Response.redirect(url.toString(), 301);
+    }
     if (url.pathname === "/e" && req.method === "POST") {
       const b = await req.json();
       await env.DB.prepare(
