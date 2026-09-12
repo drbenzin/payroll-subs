@@ -1,0 +1,24 @@
+{
+  "name": "payrollforsubs",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-13",
+  "routes": [
+    { "pattern": "payrollforsubs.com", "custom_domain": true },
+    { "pattern": "www.payrollforsubs.com", "custom_domain": true }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "landing",
+    "binding": "ASSETS"
+  },
+  "vars": { "SITE": "payrollforsubs" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "fakedoor-events",
+      "database_id": "e0613cbe-41af-4bf3-a62d-5ea7c076e9cd"
+    }
+  ]
+}

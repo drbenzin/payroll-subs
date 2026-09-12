@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PayrollForSubs — Certified Payroll (WH-347) for Subcontractors</title>
+<meta name="description" content="Certified payroll for subcontractors on prevailing-wage jobs. Connect QuickBooks or Gusto, pick the project and week — get a finished WH-347, your state form and the file your GC's portal wants. Flat $39/mo, unlimited reports.">
+<style>
+  :root { --ink:#1f2328; --ink2:#57606a; --brand:#1f4e79; --wash:#eaf1f8; --ok:#1a7f37; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:#fff; }
+  .wrap { max-width:680px; margin:0 auto; padding:48px 20px 80px; }
+  .badge { display:inline-block; background:var(--wash); color:var(--brand); font-size:13px; font-weight:600; padding:4px 12px; border-radius:99px; margin-bottom:18px; }
+  h1 { font-size:clamp(28px,5vw,40px); line-height:1.15; margin:0 0 14px; letter-spacing:-0.02em; }
+  h1 em { color:var(--brand); font-style:normal; }
+  .sub { font-size:18px; color:var(--ink2); margin:0 0 28px; }
+  .stats { display:flex; gap:28px; margin:0 0 32px; flex-wrap:wrap; }
+  .stat b { display:block; font-size:26px; color:var(--brand); }
+  .stat span { font-size:13px; color:var(--ink2); }
+  .card { border:1px solid #d0d7de; border-radius:10px; padding:22px; margin-bottom:20px; }
+  .card h2 { font-size:17px; margin:0 0 10px; }
+  ul.feat { margin:0 0 0 18px; padding:0; color:var(--ink2); }
+  ul.feat li { margin-bottom:6px; }
+  .price { font-size:15px; margin:18px 0 6px; }
+  .price b { font-size:24px; color:var(--ink); }
+  form { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  input[type=email], input[type=text], select { flex:1 1 220px; padding:12px 14px; font-size:15px; border:1px solid #d0d7de; border-radius:8px; }
+  button { padding:12px 22px; font-size:15px; font-weight:600; color:#fff; background:var(--brand); border:0; border-radius:8px; cursor:pointer; }
+  button:hover { background:#173b5c; }
+  #step2 { display:none; }
+  #step2.show { display:block; border-color:var(--ok); }
+  .fine { font-size:12.5px; color:var(--ink2); margin-top:10px; }
+  .ok { color:var(--ok); font-weight:600; }
+  footer { margin-top:56px; font-size:12.5px; color:var(--ink2); border-top:1px solid #eee; padding-top:16px; }
+
+  .shot { width:100%; aspect-ratio:1200/600; overflow:hidden; border-radius:10px; box-shadow:0 10px 34px rgba(31,78,121,.18); border:1px solid #d5e0ea; margin:0 0 28px; }
+  .mockroot { width:1200px; height:600px; transform-origin:0 0; font-family:system-ui,"Segoe UI",sans-serif; background:#f3f6f9; display:flex; }
+  .mockroot * { box-sizing:border-box; margin:0; }
+  .mockroot .side { width:200px; background:#173b5c; color:#b9cbdc; padding:20px 0; }
+  .mockroot .logo { color:#fff; font-weight:700; font-size:16px; padding:0 18px 18px; }
+  .mockroot .logo span { color:#8fc1ec; }
+  .mockroot .nav div { padding:11px 18px; font-size:13.5px; }
+  .mockroot .nav .act { background:#1f4e79; color:#fff; border-left:3px solid #8fc1ec; }
+  .mockroot .main { flex:1; padding:22px 26px; }
+  .mockroot .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .mockroot .top h1 { font-size:19px; color:#173b5c; }
+  .mockroot .btns { display:flex; gap:8px; }
+  .mockroot .btn { font-size:12.5px; font-weight:600; padding:8px 12px; border-radius:7px; border:1px solid #c6d4e1; background:#fff; color:#1f4e79; }
+  .mockroot .btn.pri { background:#1f4e79; color:#fff; border-color:#1f4e79; }
+  .mockroot .note { background:#e6f2ea; border:1px solid #bfe0cc; color:#1d5c36; border-radius:8px; padding:10px 14px; font-size:13px; font-weight:600; margin-bottom:12px; }
+  .mockroot .note small { font-weight:400; color:#4a7a5d; }
+  .mockroot .meta { display:flex; gap:26px; font-size:12.5px; color:#57606a; margin-bottom:12px; }
+  .mockroot .meta b { color:#1f2328; }
+  .mockroot table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #d5e0ea; border-radius:10px; overflow:hidden; }
+  .mockroot th { text-align:left; font-size:10.5px; color:#6b7c8c; text-transform:uppercase; letter-spacing:.4px; padding:9px 10px; background:#f7f9fb; border-bottom:1px solid #e3eaf1; }
+  .mockroot td { padding:9px 10px; font-size:12.5px; color:#2c3e4d; border-bottom:1px solid #eef2f6; white-space:nowrap; }
+  .mockroot td.r, .mockroot th.r { text-align:right; }
+  .mockroot td.c, .mockroot th.c { text-align:center; }
+  .mockroot .m { font-weight:700; }
+  .mockroot .dim { color:#8a99a8; }
+  .mockroot .pill { font-size:10.5px; font-weight:700; border-radius:99px; padding:2.5px 9px; background:#e2f2e6; color:#1a7f37; }
+  .mockroot .foot { display:flex; justify-content:space-between; align-items:center; margin-top:10px; font-size:12px; color:#57606a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">For subcontractors on prevailing-wage jobs</span>
+  <h1>Certified payroll <em>done in minutes</em> — not every Friday night</h1>
+  <p class="sub">Connect QuickBooks or Gusto, pick the project and the week — get a finished WH-347, your state form and the file your GC's portal wants. No retyping, no per-report fees.</p>
+
+  <div class="stats">
+    <div class="stat"><b>5 min</b><span>per project per week, from payroll to signed form</span></div>
+    <div class="stat"><b>WH-347 + CA · NY · WA · IL</b><span>federal form, state formats, GC portal exports</span></div>
+    <div class="stat"><b>$39 flat</b><span>unlimited projects and reports</span></div>
+  </div>
+
+  <div class="shot"><div class="mockroot" id="mock">
+    <div class="side">
+      <div class="logo">▦ Payroll<span>ForSubs</span></div>
+      <div class="nav">
+        <div class="act">Certified payroll</div>
+        <div>Projects</div>
+        <div>Employees</div>
+        <div>Archive</div>
+        <div>Settings</div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="top">
+        <h1>WH-347 — Payroll No. 14</h1>
+        <div class="btns"><span class="btn">CA eCPR XML</span><span class="btn">LCPtracker CSV</span><span class="btn pri">Download WH-347 PDF</span></div>
+      </div>
+      <div class="note">✓ Imported 6 employees · 214.5 hours from QuickBooks Online — <small>week ending 09/06/2026, ready to sign</small></div>
+      <div class="meta">
+        <div>Project: <b>Lincoln Elementary — HVAC replacement</b></div>
+        <div>Contract: <b>#24-118</b></div>
+        <div>Contractor: <b>Rivera Mechanical LLC</b></div>
+      </div>
+      <table>
+        <tr><th>Employee</th><th>Classification</th><th class="c">S</th><th class="c">M</th><th class="c">T</th><th class="c">W</th><th class="c">T</th><th class="c">F</th><th class="c">S</th><th class="r">Total</th><th class="r">Rate</th><th class="r">Gross</th><th class="r">FICA</th><th class="r">W/H</th><th class="r">Net</th></tr>
+        <tr><td class="m">M. Rivera <span class="dim">···4821</span></td><td>Sheet Metal Worker</td><td class="c dim">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c dim">—</td><td class="r m">40.0</td><td class="r">$52.14</td><td class="r m">$2,085.60</td><td class="r">$159.55</td><td class="r">$231.00</td><td class="r m">$1,695.05</td></tr>
+        <tr><td class="m">J. Okafor <span class="dim">···0377</span></td><td>Sheet Metal Worker</td><td class="c dim">—</td><td class="c">8</td><td class="c">8</td><td class="c">10</td><td class="c">8</td><td class="c">8</td><td class="c dim">—</td><td class="r m">42.0</td><td class="r">$52.14 / OT $78.21</td><td class="r m">$2,242.02</td><td class="r">$171.51</td><td class="r">$248.00</td><td class="r m">$1,822.51</td></tr>
+        <tr><td class="m">T. Nguyen <span class="dim">···9150</span></td><td>Pipefitter</td><td class="c dim">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">6</td><td class="c dim">—</td><td class="r m">38.0</td><td class="r">$58.90</td><td class="r m">$2,238.20</td><td class="r">$171.22</td><td class="r">$252.00</td><td class="r m">$1,814.98</td></tr>
+        <tr><td class="m">D. Brooks <span class="dim">···2264</span></td><td>Apprentice SMW, 3rd yr</td><td class="c dim">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c dim">—</td><td class="r m">40.0</td><td class="r">$36.50</td><td class="r m">$1,460.00</td><td class="r">$111.69</td><td class="r">$142.00</td><td class="r m">$1,206.31</td></tr>
+        <tr><td class="m">A. Castillo <span class="dim">···7708</span></td><td>Laborer, Group 1</td><td class="c dim">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">6.5</td><td class="c dim">—</td><td class="r m">38.5</td><td class="r">$41.20</td><td class="r m">$1,586.20</td><td class="r">$121.34</td><td class="r">$161.00</td><td class="r m">$1,303.86</td></tr>
+        <tr><td class="m">K. Patel <span class="dim">···5539</span></td><td>Pipefitter</td><td class="c dim">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">4</td><td class="c dim">—</td><td class="r m">36.0</td><td class="r">$58.90</td><td class="r m">$2,120.40</td><td class="r">$162.21</td><td class="r">$236.00</td><td class="r m">$1,722.19</td></tr>
+      </table>
+      <div class="foot">
+        <div>Statement of Compliance: <b>pre-filled</b> · Fringe benefits: <b>paid to plans (4(a))</b> · Prior payroll: <b>No. 13, accepted by GC 09/02</b></div>
+        <span class="pill">READY TO SIGN</span>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="card">
+    <h2>What you get</h2>
+    <ul class="feat">
+      <li>Connect QuickBooks Online or Gusto; import a payroll export from ADP, Paychex or a spreadsheet</li>
+      <li>WH-347 and Statement of Compliance filled from your payroll data — hours by day, classifications, fringes, deductions</li>
+      <li>State formats: California DIR eCPR XML, New York, Washington, Illinois — more on request</li>
+      <li>Exports for LCPtracker, eMars and your GC's own spreadsheet template</li>
+      <li>Every report archived by project for the 3-year retention window and audits</li>
+      <li>We format your payroll data — we never change your rates. You review, you sign.</li>
+    </ul>
+    <p class="price"><b>$39</b>/month · unlimited projects &amp; reports · first 4 reports free</p>
+
+    <form id="f1">
+      <input type="email" id="email" required placeholder="you@yourcompany.com">
+      <button type="submit">Generate my first WH-347 free</button>
+    </form>
+    <p class="fine">No spam. We'll send your access and a one-page setup guide.</p>
+  </div>
+
+  <div class="card" id="step2">
+    <h2><span class="ok">✓ Almost done.</span> Tell us about your payroll</h2>
+    <form id="f2">
+      <select id="payroll" required>
+        <option value="" disabled selected>Where is your payroll today?</option>
+        <option>QuickBooks Online</option><option>QuickBooks Desktop</option><option>Gusto</option>
+        <option>ADP</option><option>Paychex</option><option>Spreadsheet / other</option>
+      </select>
+      <input type="text" id="projects" placeholder="Prevailing-wage projects right now (e.g. 2)">
+      <input type="text" id="states" placeholder="States you report in (e.g. CA, NV)">
+      <input type="text" id="current" placeholder="How do you fill WH-347 today?">
+      <button type="submit">Set up my account</button>
+    </form>
+    <p class="fine" id="done" hidden>Thanks — your access arrives within one business day.</p>
+  </div>
+
+  <footer>PayrollForSubs. Questions: reply to any of our emails.</footer>
+</div>
+
+<script>
+function fitMock() {
+  const shot = document.querySelector(".shot");
+  const mock = document.getElementById("mock");
+  if (shot && mock) mock.style.transform = "scale(" + (shot.clientWidth / 1200) + ")";
+}
+window.addEventListener("resize", fitMock);
+fitMock();
+
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/factodus@gmail.com";
+let savedEmail = "";
+
+document.getElementById("f1").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  savedEmail = document.getElementById("email").value;
+  const step2 = document.getElementById("step2");
+  step2.classList.add("show");
+  step2.scrollIntoView({ behavior: "smooth" });
+  try {
+    await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ _subject: "PayrollForSubs step1", email: savedEmail, step: "1" })
+    });
+  } catch (_) {}
+});
+
+document.getElementById("f2").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const payload = {
+    _subject: "PayrollForSubs step2",
+    email: savedEmail,
+    step: "2",
+    payroll_system: document.getElementById("payroll").value,
+    projects: document.getElementById("projects").value,
+    states: document.getElementById("states").value,
+    current_tool: document.getElementById("current").value
+  };
+  document.getElementById("done").hidden = false;
+  e.target.querySelector("button").disabled = true;
+  try {
+    await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    });
+  } catch (_) {}
+});
+</script>
+<script src="/t.js" defer></script>
+</body>
+</html>
