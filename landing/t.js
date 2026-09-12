@@ -32,6 +32,7 @@
     f2.addEventListener("focusin", function () { ev("f2_focus"); });
     f2.addEventListener("submit", function () { ev("f2_submit"); });
   }
+  document.addEventListener("click", function (e) { if (e.target.closest(".shot")) ev("mock_zoom"); });
   var t0 = Date.now();
   window.addEventListener("pagehide", function () {
     ev("leave_" + Math.round((Date.now() - t0) / 1000 / 10) * 10 + "s");
