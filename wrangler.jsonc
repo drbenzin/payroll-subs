@@ -1,7 +1,7 @@
 {
   "name": "payrollforsubs",
   "main": "src/worker.js",
-  "compatibility_date": "2026-09-13",
+  "compatibility_date": "2026-09-10",
   "routes": [
     { "pattern": "payrollforsubs.com", "custom_domain": true },
     { "pattern": "www.payrollforsubs.com", "custom_domain": true }
