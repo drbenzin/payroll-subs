@@ -215,11 +215,16 @@ let savedEmail = "";
 
 let leadMode = "preorder";
 function openForm(mode) {
+  const f1 = document.getElementById("f1");
+  const email = document.getElementById("email");
+  const sameMode = leadMode === mode && !f1.hidden;
   leadMode = mode; window.leadMode = mode;
-  document.getElementById("f1").hidden = false;
+  f1.hidden = false;
   document.getElementById("f1fine").hidden = false;
   document.getElementById("f1btn").textContent = mode === "preorder" ? "Lock my founding price" : "Notify me at launch";
-  document.getElementById("email").focus();
+  // Second click on the same CTA with an email already typed = submit (users expect the big button to act).
+  if (sameMode && email.value.trim()) { f1.requestSubmit(); return; }
+  email.focus();
 }
 document.getElementById("preorder").addEventListener("click", () => openForm("preorder"));
 document.getElementById("notify").addEventListener("click", () => openForm("notify"));
