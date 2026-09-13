@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample completed WH-347 — PayrollForSubs</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --ink:#1f2328; --ink2:#57606a; --brand:#1f4e79; --wash:#eaf1f8; --ok:#1a7f37; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:#f3f6f9; }
+  .wrap { max-width:900px; margin:0 auto; padding:28px 16px 80px; }
+  .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+  .top a { color:var(--brand); text-decoration:none; font-weight:600; }
+  .note { background:#fff8e1; border:1px solid #f1dc8a; color:#6b5300; border-radius:8px; padding:10px 14px; font-size:13.5px; margin-bottom:16px; }
+  .form { background:#fff; border:1px solid #c9d3dd; padding:22px 26px; font-family:Arial,Helvetica,sans-serif; font-size:12px; box-shadow:0 8px 28px rgba(31,78,121,.10); }
+  .fhd { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #000; padding-bottom:8px; margin-bottom:10px; }
+  .fhd h1 { font-size:15px; margin:0; letter-spacing:.3px; }
+  .fhd .omb { font-size:10px; text-align:right; }
+  .meta { display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; margin-bottom:10px; }
+  .meta div { border-bottom:1px solid #999; padding:3px 0; }
+  .meta small { display:block; font-size:9px; color:#444; text-transform:uppercase; }
+  .tw { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; min-width:820px; }
+  th, td { border:1px solid #000; padding:4px 5px; font-size:11px; vertical-align:top; }
+  th { background:#eef2f6; font-weight:700; font-size:10px; text-transform:uppercase; }
+  td.c, th.c { text-align:center; }
+  td.r, th.r { text-align:right; white-space:nowrap; }
+  .nm { font-weight:700; }
+  .sub { font-size:10px; color:#444; }
+  .soc { margin-top:14px; border-top:2px solid #000; padding-top:10px; font-size:11.5px; }
+  .soc h2 { font-size:12.5px; margin:0 0 6px; text-transform:uppercase; }
+  .soc p { margin:4px 0; }
+  .sig { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:12px; }
+  .sig div { border-top:1px solid #000; padding-top:4px; font-size:10px; }
+  .stamp { display:inline-block; border:2px solid #1a7f37; color:#1a7f37; font-weight:700; border-radius:6px; padding:3px 9px; font-size:11px; transform:rotate(-3deg); }
+  .side { margin-top:16px; background:#fff; border:1px solid #d5e0ea; border-radius:12px; padding:16px 20px; }
+  .side h2 { font-size:14px; margin:0 0 8px; }
+  pre { background:#0f1720; color:#cfe3f7; padding:12px 14px; border-radius:8px; font-size:11.5px; overflow-x:auto; margin:0; }
+  .files { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .files span { border:1px solid #c6d4e1; border-radius:7px; padding:6px 10px; font-size:12.5px; color:var(--brand); font-weight:600; background:#fff; }
+  .ctabar { margin-top:22px; background:#fff; border:1px solid #d5e0ea; border-radius:12px; padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
+  .ctabar b { font-size:16px; }
+  .backcta { display:inline-block; padding:12px 22px; background:var(--brand); color:#fff; border-radius:8px; font-weight:600; text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="/">← PayrollForSubs</a><span style="color:var(--ink2);font-size:13px">Sample: completed WH-347, generated from a QuickBooks export</span></div>
+  <div class="note">A WH-347 the way PayrollForSubs fills it: employees, classifications, daily hours, rates, gross, deductions and net come from your payroll export; the Statement of Compliance is pre-filled from your project settings. Company and workers below are fictional; the layout follows the DOL form.</div>
+
+  <div class="form">
+    <div class="fhd">
+      <div><h1>PAYROLL — U.S. Department of Labor, Wage and Hour Division (Form WH-347)</h1><div class="sub">For Contractor's Optional Use · Persons are not required to respond to the collection of information unless it displays a currently valid OMB control number.</div></div>
+      <div class="omb">OMB No. 1235-0008<br>Expires 02/28/2027</div>
+    </div>
+    <div class="meta">
+      <div><small>Name of contractor ☐ or subcontractor ☒</small>Rivera Mechanical LLC</div>
+      <div><small>Address</small>4180 E Slauson Ave, Maywood, CA 90270</div>
+      <div><small>Payroll No.</small>14</div>
+      <div><small>For week ending</small>09/06/2026</div>
+      <div><small>Project and location</small>Lincoln Elementary — HVAC replacement, 1010 E 13th St, Los Angeles, CA</div>
+      <div><small>Project or contract No.</small>LAUSD 24-118 (Prime: Hartwell Builders Inc.)</div>
+    </div>
+    <div class="tw"><table>
+      <tr><th rowspan="2">(1) Name and individual identifying number of worker</th><th rowspan="2" class="c">(2) No. of withholding exemptions</th><th rowspan="2">(3) Work classification</th><th colspan="7" class="c">(4) Day and date — hours worked each day</th><th rowspan="2" class="r">(5) Total hours</th><th rowspan="2" class="r">(6) Rate of pay incl. fringe</th><th rowspan="2" class="r">(7) Gross amount earned</th><th colspan="4" class="c">(8) Deductions</th><th rowspan="2" class="r">(9) Net wages paid for week</th></tr>
+      <tr><th class="c">Su<br>8/31</th><th class="c">M<br>9/1</th><th class="c">Tu<br>9/2</th><th class="c">W<br>9/3</th><th class="c">Th<br>9/4</th><th class="c">F<br>9/5</th><th class="c">Sa<br>9/6</th><th class="r">FICA</th><th class="r">Fed W/H</th><th class="r">State</th><th class="r">Other</th></tr>
+      <tr><td><span class="nm">Rivera, Marco</span><br><span class="sub">XXX-XX-4821</span></td><td class="c">2</td><td>Sheet Metal Worker</td><td class="c">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">—</td><td class="r">40.0 S</td><td class="r">$52.14</td><td class="r">$2,085.60</td><td class="r">$159.55</td><td class="r">$231.00</td><td class="r">$88.40</td><td class="r">$0.00</td><td class="r">$1,606.65</td></tr>
+      <tr><td><span class="nm">Okafor, James</span><br><span class="sub">XXX-XX-0377</span></td><td class="c">1</td><td>Sheet Metal Worker</td><td class="c">—</td><td class="c">8</td><td class="c">8</td><td class="c">8/2</td><td class="c">8</td><td class="c">8</td><td class="c">—</td><td class="r">40.0 S<br>2.0 O</td><td class="r">$52.14<br>$78.21</td><td class="r">$2,242.02</td><td class="r">$171.51</td><td class="r">$248.00</td><td class="r">$96.10</td><td class="r">$0.00</td><td class="r">$1,726.41</td></tr>
+      <tr><td><span class="nm">Nguyen, Thao</span><br><span class="sub">XXX-XX-9150</span></td><td class="c">0</td><td>Pipefitter</td><td class="c">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">6</td><td class="c">—</td><td class="r">38.0 S</td><td class="r">$58.90</td><td class="r">$2,238.20</td><td class="r">$171.22</td><td class="r">$252.00</td><td class="r">$95.80</td><td class="r">$0.00</td><td class="r">$1,719.18</td></tr>
+      <tr><td><span class="nm">Brooks, Devon</span><br><span class="sub">XXX-XX-2264</span></td><td class="c">1</td><td>Apprentice SMW, 3rd period (60%)</td><td class="c">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">—</td><td class="r">40.0 S</td><td class="r">$36.50</td><td class="r">$1,460.00</td><td class="r">$111.69</td><td class="r">$142.00</td><td class="r">$51.20</td><td class="r">$0.00</td><td class="r">$1,155.11</td></tr>
+      <tr><td><span class="nm">Castillo, Ana</span><br><span class="sub">XXX-XX-7708</span></td><td class="c">3</td><td>Laborer, Group 1</td><td class="c">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">6.5</td><td class="c">—</td><td class="r">38.5 S</td><td class="r">$41.20</td><td class="r">$1,586.20</td><td class="r">$121.34</td><td class="r">$161.00</td><td class="r">$58.90</td><td class="r">$0.00</td><td class="r">$1,244.96</td></tr>
+      <tr><td><span class="nm">Patel, Kiran</span><br><span class="sub">XXX-XX-5539</span></td><td class="c">2</td><td>Pipefitter</td><td class="c">—</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">8</td><td class="c">4</td><td class="c">—</td><td class="r">36.0 S</td><td class="r">$58.90</td><td class="r">$2,120.40</td><td class="r">$162.21</td><td class="r">$236.00</td><td class="r">$90.60</td><td class="r">$0.00</td><td class="r">$1,631.59</td></tr>
+    </table></div>
+
+    <div class="soc">
+      <h2>Statement of Compliance</h2>
+      <p>Date: <b>09/08/2026</b> &nbsp; I, <b>Marco Rivera, Owner</b>, do hereby state: (1) That I pay or supervise the payment of the persons employed by <b>Rivera Mechanical LLC</b> on the <b>Lincoln Elementary — HVAC replacement</b>; that during the payroll period commencing on the <b>31st</b> day of <b>August, 2026</b>, and ending the <b>6th</b> day of <b>September, 2026</b>, all persons employed on said project have been paid the full weekly wages earned…</p>
+      <p>(4) That: <b>☒ (a) WHERE FRINGE BENEFITS ARE PAID TO APPROVED PLANS, FUNDS, OR PROGRAMS</b> — in addition to the basic hourly wage rates paid to each laborer or mechanic listed in the above referenced payroll, payments of fringe benefits as listed in the contract have been or will be made to appropriate programs for the benefit of such employees. ☐ (b) Where fringe benefits are paid in cash.</p>
+      <p>(c) Exceptions: <b>Brooks, Devon — apprentice, registered CA DAS #A-118273, ratio 1:3.</b></p>
+      <div class="sig"><div>NAME AND TITLE — Marco Rivera, Owner</div><div>SIGNATURE — <span class="stamp">READY TO SIGN</span></div></div>
+    </div>
+  </div>
+
+  <div class="side">
+    <h2>The same week, in the formats your GC and the state want</h2>
+    <div class="files"><span>⬇ WH-347_payroll14.pdf</span><span>⬇ CA_eCPR_payroll14.xml</span><span>⬇ LCPtracker_payroll14.csv</span><span>⬇ Hartwell_template_payroll14.xlsx</span></div>
+    <pre>&lt;eCPR xmlns="http://www.dir.ca.gov/ecpr" version="2.1"&gt;
+  &lt;Contractor name="Rivera Mechanical LLC" license="C20-1087645" pwcr="1000012345"/&gt;
+  &lt;Project dirId="452311" name="Lincoln Elementary HVAC" awardingBody="LAUSD"/&gt;
+  &lt;Payroll number="14" weekEnding="2026-09-06" statementOfCompliance="true"&gt;
+    &lt;Employee lastFour="4821" classification="Sheet Metal Worker" craft="SMW"&gt;
+      &lt;Hours date="2026-09-01" straight="8" overtime="0" double="0"/&gt; …
+      &lt;Pay rate="52.14" gross="2085.60" fringeToPlan="18.42" net="1606.65"/&gt;</pre>
+  </div>
+
+  <div class="ctabar">
+    <div><b>Want your WH-347 and state forms filled from QuickBooks or Gusto every week?</b><br><span style="color:var(--ink2);font-size:13.5px">$39/month flat · unlimited projects · no charge until launch day</span></div>
+    <a class="backcta" href="/#pricing">Pre-order at $39/mo →</a>
+  </div>
+</div>
+<script src="/t.js" defer></script>
+</body>
+</html>

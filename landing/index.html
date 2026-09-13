@@ -65,6 +65,13 @@
   .zoom { position:fixed; inset:0; background:rgba(15,23,32,.88); display:none; align-items:center; justify-content:center; cursor:zoom-out; z-index:50; }
   .zoom.on { display:flex; }
   .zoom .frame { overflow:hidden; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  button.ghost { background:#fff; color:var(--brand); border:1px solid var(--brand); }
+  button.ghost:hover { background:var(--wash); }
+  .samplelink { margin:-8px 0 28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .samplelink a { display:inline-block; padding:12px 22px; border:2px solid var(--brand); color:var(--brand); border-radius:8px; font-weight:600; text-decoration:none; }
+  .samplelink a:hover { background:var(--wash); }
+  .nocharge { margin:4px 0 0; }
 </style>
 </head>
 <body>
@@ -117,7 +124,9 @@
     </div>
   </div></div>
 
-  <div class="card">
+  <p class="samplelink"><a href="/sample.html" id="samplelink">See a completed WH-347 sample →</a><span class="fine">No email needed</span></p>
+
+  <div class="card" id="pricing">
     <h2>What you get</h2>
     <ul class="feat">
       <li>Connect QuickBooks Online or Gusto; import a payroll export from ADP, Paychex or a spreadsheet</li>
@@ -127,13 +136,17 @@
       <li>Every report archived by project for the 3-year retention window and audits</li>
       <li>We format your payroll data — we never change your rates. You review, you sign.</li>
     </ul>
-    <p class="price"><b>$39</b>/month · unlimited projects &amp; reports · first 4 reports free</p>
-
-    <form id="f1">
+    <p class="price"><b>$39</b>/month · cancel anytime</p>
+    <p class="fine nocharge">No charge until launch day. Pre-order locks the founding price for as long as you stay.</p>
+    <div class="cta">
+      <button type="button" id="preorder">Pre-order at $39/mo</button>
+      <button type="button" id="notify" class="ghost">Not ready? Get launch notice</button>
+    </div>
+    <form id="f1" hidden>
       <input type="email" id="email" required placeholder="you@yourcompany.com">
-      <button type="submit">Generate my first WH-347 free</button>
+      <button type="submit" id="f1btn">Lock my founding price</button>
     </form>
-    <p class="fine">No spam. We'll send your access and a one-page setup guide.</p>
+    <p class="fine" id="f1fine" hidden>No spam. We'll email you before launch with your access and a one-page setup guide.</p>
   </div>
 
   <div class="card" id="step2">
@@ -149,10 +162,10 @@
       <input type="text" id="current" placeholder="How do you fill WH-347 today?">
       <button type="submit">Set up my account</button>
     </form>
-    <p class="fine" id="done" hidden>Thanks — your access arrives within one business day.</p>
+    <p class="fine" id="done" hidden></p>
   </div>
 
-  <footer>PayrollForSubs. Questions: reply to any of our emails.</footer>
+  <footer>PayrollForSubs. Questions: reply to any of our emails. Made by Factodus · factodus@gmail.com · No card is charged before launch.</footer>
 </div>
 
 <div class="zoom" id="zoom"><div class="frame"></div></div>
@@ -198,6 +211,17 @@ window.addEventListener("resize", () => { if (zoomEl.classList.contains("on")) f
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/factodus@gmail.com";
 let savedEmail = "";
 
+let leadMode = "preorder";
+function openForm(mode) {
+  leadMode = mode; window.leadMode = mode;
+  document.getElementById("f1").hidden = false;
+  document.getElementById("f1fine").hidden = false;
+  document.getElementById("f1btn").textContent = mode === "preorder" ? "Lock my founding price" : "Notify me at launch";
+  document.getElementById("email").focus();
+}
+document.getElementById("preorder").addEventListener("click", () => openForm("preorder"));
+document.getElementById("notify").addEventListener("click", () => openForm("notify"));
+
 document.getElementById("f1").addEventListener("submit", async (e) => {
   e.preventDefault();
   savedEmail = document.getElementById("email").value;
@@ -208,7 +232,7 @@ document.getElementById("f1").addEventListener("submit", async (e) => {
     await fetch(FORM_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({ _subject: "PayrollForSubs step1", email: savedEmail, step: "1" })
+      body: JSON.stringify({ _subject: "PayrollForSubs " + leadMode + " step1", mode: leadMode, email: savedEmail, step: "1" })
     });
   } catch (_) {}
 });
@@ -216,7 +240,7 @@ document.getElementById("f1").addEventListener("submit", async (e) => {
 document.getElementById("f2").addEventListener("submit", async (e) => {
   e.preventDefault();
   const payload = {
-    _subject: "PayrollForSubs step2",
+    _subject: "PayrollForSubs " + leadMode + " step2", mode: leadMode,
     email: savedEmail,
     step: "2",
     payroll_system: document.getElementById("payroll").value,
@@ -224,7 +248,11 @@ document.getElementById("f2").addEventListener("submit", async (e) => {
     states: document.getElementById("states").value,
     current_tool: document.getElementById("current").value
   };
-  document.getElementById("done").hidden = false;
+  const done = document.getElementById("done");
+  done.textContent = leadMode === "preorder"
+    ? "You're first in line. Payment opens on launch day — nothing is charged until then. We'll email you 48 hours before."
+    : "Thanks — we'll email you when we launch.";
+  done.hidden = false;
   e.target.querySelector("button").disabled = true;
   try {
     await fetch(FORM_ENDPOINT, {
