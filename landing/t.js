@@ -5,12 +5,17 @@
     sid = sessionStorage.getItem(KEY);
     if (!sid) { sid = Math.random().toString(36).slice(2, 12); sessionStorage.setItem(KEY, sid); }
   } catch (e) { sid = Math.random().toString(36).slice(2, 12); }
+  var ref = "";
+  try {
+    ref = sessionStorage.getItem("ref") || "";
+    if (location.search) { ref = location.search.slice(0, 200); sessionStorage.setItem("ref", ref); }
+  } catch (e) { ref = location.search.slice(0, 200); }
   var pfx = /sample/.test(location.pathname) ? "sample_" : "";
   var sent = {};
   function ev(name) {
     if (sent[name]) return;
     sent[name] = 1;
-    var body = JSON.stringify({ ev: name, sid: sid, ref: location.search.slice(0, 200) });
+    var body = JSON.stringify({ ev: name, sid: sid, ref: ref });
     if (navigator.sendBeacon) navigator.sendBeacon("/e", new Blob([body], { type: "application/json" }));
     else fetch("/e", { method: "POST", body: body, keepalive: true });
   }
