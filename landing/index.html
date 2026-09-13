@@ -163,6 +163,8 @@
       <button type="submit">Set up my account</button>
     </form>
     <p class="fine" id="done" hidden></p>
+    <button type="button" id="savecard" hidden>Reserve my spot with a card — nothing charged until launch</button>
+    <p class="fine" id="cardfine" hidden>Card reservation opens on launch day — your spot is saved by email.</p>
   </div>
 
   <footer>PayrollForSubs. Questions: reply to any of our emails. Made by Factodus · factodus@gmail.com · No card is charged before launch.</footer>
@@ -253,6 +255,20 @@ document.getElementById("f2").addEventListener("submit", async (e) => {
     ? "You're first in line. Payment opens on launch day — nothing is charged until then. We'll email you 48 hours before."
     : "Thanks — we'll email you when we launch.";
   done.hidden = false;
+  if (leadMode === "preorder") {
+    const btn = document.getElementById("savecard");
+    btn.hidden = false;
+    btn.onclick = async () => {
+      btn.disabled = true; btn.textContent = "Opening secure checkout…";
+      try {
+        const r = await fetch("/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: savedEmail }) });
+        const j = await r.json();
+        if (j.url) { location.href = j.url; return; }
+      } catch (_) {}
+      btn.hidden = true;
+      document.getElementById("cardfine").hidden = false;
+    };
+  }
   e.target.querySelector("button").disabled = true;
   try {
     await fetch(FORM_ENDPOINT, {

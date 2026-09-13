@@ -14,7 +14,7 @@
     "binding": "ASSETS",
     "run_worker_first": true
   },
-  "vars": { "SITE": "payrollforsubs" },
+  "vars": { "SITE": "payrollforsubs", "PRICE": "$39/mo" },
   "d1_databases": [
     {
       "binding": "DB",

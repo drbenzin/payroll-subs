@@ -19,6 +19,7 @@
     if (navigator.sendBeacon) navigator.sendBeacon("/e", new Blob([body], { type: "application/json" }));
     else fetch("/e", { method: "POST", body: body, keepalive: true });
   }
+  if (/preorder-ok/.test(location.pathname)) ev("checkout_complete");
   ev(pfx + "view");
   window.addEventListener("scroll", function () {
     if ((scrollY + innerHeight) / document.documentElement.scrollHeight > 0.5) ev(pfx + "scroll50");
@@ -39,9 +40,10 @@
     f2.addEventListener("submit", function () { ev("f2_submit"); });
   }
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("#preorder, #notify, #samplelink, .shot, .backcta");
+    var t = e.target.closest("#preorder, #notify, #samplelink, #savecard, .shot, .backcta");
     if (!t) return;
     if (t.id === "preorder") ev("pay_click");
+    else if (t.id === "savecard") ev("checkout_click");
     else if (t.id === "notify") ev("notify_click");
     else if (t.id === "samplelink") ev("sample_click");
     else if (t.classList.contains("backcta")) ev("sample_to_pricing");
