@@ -5,10 +5,16 @@
     sid = sessionStorage.getItem(KEY);
     if (!sid) { sid = Math.random().toString(36).slice(2, 12); sessionStorage.setItem(KEY, sid); }
   } catch (e) { sid = Math.random().toString(36).slice(2, 12); }
+  // ref = query string of the landing hit (gclid / utm_*) plus r=<external referrer host>; kept for the session.
   var ref = "";
   try {
     ref = sessionStorage.getItem("ref") || "";
-    if (location.search) { ref = location.search.slice(0, 200); sessionStorage.setItem("ref", ref); }
+    var q = location.search.slice(0, 200);
+    var r = document.referrer.replace(/^https?:\/\/([^\/]+).*/, "$1");
+    if (r === document.referrer || r === location.host) r = "";
+    if (q) ref = q + (r ? "&r=" + r : "");
+    else if (!ref && r) ref = "?r=" + r;
+    if (ref) sessionStorage.setItem("ref", ref);
   } catch (e) { ref = location.search.slice(0, 200); }
   var pfx = /sample/.test(location.pathname) ? "sample_" : "";
   var sent = {};
